@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Lakshay Kaushik</title>
+  <meta name="description" content="Film production, motion graphics, VFX, graphic design and video editing services by Lakshay Kaushik.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* FULL-WIDTH SERVICE ROWS */
+    .svc-rows { position: relative; z-index: 1; padding: 80px 0 0; }
+
+    .svc-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 1px solid rgba(240,237,230,.07);
+      max-width: 1220px; margin: 0 auto;
+      padding: 80px 52px; gap: 80px; align-items: start;
+    }
+
+    .svc-row-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 120px;
+      color: var(--gray-800); line-height: 1; letter-spacing: .04em;
+      transition: color .5s;
+    }
+    .svc-row:hover .svc-row-num { color: var(--gray-700); }
+
+    .svc-row-icon { font-size: 32px; margin-bottom: 24px; color: var(--gray-400); }
+    .svc-row-name {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 72px);
+      letter-spacing: .06em; color: var(--white); line-height: 1; margin-bottom: 24px;
+    }
+    .svc-row-desc {
+      font-size: 11px; line-height: 2.1; color: var(--gray-200); letter-spacing: .04em;
+      margin-bottom: 36px;
+    }
+
+    .svc-deliverables { margin-top: 12px; }
+    .svc-deliv-title {
+      font-size: 8px; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gray-600); margin-bottom: 18px;
+    }
+    .svc-deliv-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .svc-deliv-list li {
+      font-size: 10px; letter-spacing: .06em; color: var(--gray-400);
+      padding-left: 18px; position: relative;
+    }
+    .svc-deliv-list li::before {
+      content: '→'; position: absolute; left: 0; color: var(--gray-600); font-size: 10px;
+    }
+
+    /* PRICING BAND */
+    .pricing {
+      position: relative; z-index: 1; padding: 120px 52px;
+      background: var(--gray-900);
+      border-top: 1px solid rgba(240,237,230,.06);
+      border-bottom: 1px solid rgba(240,237,230,.06);
+    }
+    .pricing-hd { max-width: 1220px; margin: 0 auto 72px; }
+    .pricing-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 100px); letter-spacing: .04em; color: var(--white); line-height: 1;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+      max-width: 1220px; margin: 0 auto;
+    }
+    .price-card {
+      padding: 52px 40px; background: var(--gray-800);
+      border: 1px solid rgba(240,237,230,.05); transition: background .4s;
+    }
+    .price-card:hover { background: var(--gray-700); }
+    .price-card.featured {
+      background: var(--white); color: var(--black);
+    }
+    .price-card.featured .price-tier,
+    .price-card.featured .price-desc,
+    .price-card.featured .price-item { color: #333; }
+    .price-card.featured .price-label { color: #666; }
+    .price-tier {
+      font-family: 'Bebas Neue', sans-serif; font-size: 32px;
+      letter-spacing: .1em; color: var(--white); margin-bottom: 16px;
+    }
+    .price-label { font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 36px; display: block; }
+    .price-desc  { font-size: 10px; line-height: 1.9; color: var(--gray-200); margin-bottom: 32px; }
+    .price-items { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .price-item  { font-size: 9px; letter-spacing: .06em; color: var(--gray-200); padding-left: 16px; position: relative; }
+    .price-item::before { content: '✓'; position: absolute; left: 0; color: var(--gray-400); }
+    .price-cta {
+      display: inline-block; margin-top: 36px; padding: 12px 32px;
+      font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: .2em;
+      text-transform: uppercase; text-decoration: none; cursor: none;
+      border: 1px solid rgba(240,237,230,.2); color: var(--white); transition: all .3s;
+    }
+    .price-cta:hover { background: var(--white); color: var(--black); }
+    .price-card.featured .price-cta {
+      border-color: var(--black); color: var(--black); background: transparent;
+    }
+    .price-card.featured .price-cta:hover { background: var(--black); color: var(--white); }
+
+    @media (max-width: 900px) {
+      .svc-row { grid-template-columns: 1fr; gap: 32px; padding: 60px 24px; }
+      .svc-row-num { font-size: 72px; }
+      .pricing { padding: 80px 24px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .svc-row { padding: 48px 16px; }
+      .svc-row-num { font-size: 56px; }
+      .pricing { padding: 64px 16px; }
+      .pricing-hd { margin-bottom: 44px; }
+      .price-card { padding: 40px 24px; }
+      .price-cta { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div class="dots"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <!-- ▼ REPLACE: swap src with your actual logo file -->
+    <img src="images/logo.svg" alt="Lakshay Kaushik logo"
+         onerror="this.style.display='none'">
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Something Different</span>
+      <span class="nav-logo-sub">Studios</span>
+    </div>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="site-nav">
+    <li><a href="index.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.2v-6.1H8.7V21H3.5a.5.5 0 0 1-.5-.5v-9.7Z"/></svg></span><span>Home</span></a></li>
+    <li><a href="about.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12.2a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2Zm-7.5 8.3c.8-3.9 3.6-6.1 7.5-6.1s6.7 2.2 7.5 6.1H4.5Z"/></svg></span><span>About</span></a></li>
+    <li><a href="services.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h7v7H4v-7Zm9 0h7v7h-7v-7Zm-9 9h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></svg></span><span>Services</span></a></li>
+    <li><a href="portfolio.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2 0v6.2l3.2-3.2 4.2 4.2 1.8-1.8L18 14.7V6.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5Z"/></svg></span><span>Portfolio</span></a></li>
+    <li><a href="contact.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4V5Zm2 3.2v.5l6 4.1 6-4.1v-.5H6Zm0 3v5.8h12v-5.8l-6 4.1-6-4.1Z"/></svg></span><span>Contact</span></a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-top:120px">
+  <div class="page-hero-scan"></div>
+  <div class="page-hero-tag fu">What We Offer</div>
+  <h1 class="page-hero-hl fu">My<br><span class="hollow">Services</span></h1>
+  <p class="page-hero-sub fu">Five disciplines. One relentless standard of quality.</p>
+</section>
+
+<!-- MARQUEE -->
+<div class="marq-wrap">
+  <div class="marq-track">
+    <span class="marq-item a">Film Production</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Motion Graphics</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">VFX</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Graphic Design</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Video Editing</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Something Different</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Film Production</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Motion Graphics</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">VFX</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Graphic Design</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Video Editing</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Something Different</span><span class="marq-item marq-dot">·</span>
+  </div>
+</div>
+
+<!-- SERVICE ROWS -->
+<section class="svc-rows">
+
+  <!-- 01 Film Production -->
+  <div class="svc-row">
+    <div>
+      <div class="svc-row-num">01</div>
+    </div>
+    <div>
+      <div class="svc-row-icon">🎬</div>
+      <h2 class="svc-row-name fu">Film<br>Production</h2>
+      <p class="svc-row-desc fu">
+        We handle the full filmmaking pipeline — creative concepting, scripting, direction, cinematography, colour grading, and final delivery. Whether it's a brand film, a music video, or an independent short, we approach every frame with cinematic intent.
+      </p>
+      <div class="svc-deliverables fu">
+        <div class="svc-deliv-title">What's Included</div>
+        <ul class="svc-deliv-list">
+          <li>Creative treatment & storyboard</li>
+          <li>Direction & on-set production</li>
+          <li>Cinematography & camera operation</li>
+          <li>Colour grading & final mastering</li>
+          <li>Multi-format delivery (broadcast, social, web)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 Motion Graphics -->
+  <div class="svc-row">
+    <div>
+      <div class="svc-row-num">02</div>
+    </div>
+    <div>
+      <div class="svc-row-icon">✦</div>
+      <h2 class="svc-row-name fu">Motion<br>Graphics</h2>
+      <p class="svc-row-desc fu">
+        Dynamic motion work that adds dimension, energy, and narrative depth. From kinetic typographic sequences to fully animated brand campaigns, we design motion with purpose — every second of animation earns its place.
+      </p>
+      <div class="svc-deliverables fu">
+        <div class="svc-deliv-title">What's Included</div>
+        <ul class="svc-deliv-list">
+          <li>Title sequences & end cards</li>
+          <li>Animated logo & brand idents</li>
+          <li>Explainer & product animations</li>
+          <li>Broadcast graphics packages</li>
+          <li>Social-first motion content</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 VFX -->
+  <div class="svc-row">
+    <div>
+      <div class="svc-row-num">03</div>
+    </div>
+    <div>
+      <div class="svc-row-icon">⬡</div>
+      <h2 class="svc-row-name fu">VFX &amp;<br>Compositing</h2>
+      <p class="svc-row-desc fu">
+        Photo-real visual effects and compositing that expand what's possible on screen. We integrate 3D elements, digital environments, and advanced retouching with a seamless invisible hand.
+      </p>
+      <div class="svc-deliverables fu">
+        <div class="svc-deliv-title">What's Included</div>
+        <ul class="svc-deliv-list">
+          <li>Compositing & green-screen keying</li>
+          <li>3D element integration</li>
+          <li>Digital matte painting</li>
+          <li>Photo retouching & manipulation</li>
+          <li>Particle & simulation effects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 Graphic Design -->
+  <div class="svc-row">
+    <div>
+      <div class="svc-row-num">04</div>
+    </div>
+    <div>
+      <div class="svc-row-icon">◈</div>
+      <h2 class="svc-row-name fu">Graphic<br>Design</h2>
+      <p class="svc-row-desc fu">
+        Visual identities, campaign artwork, editorial layouts, and print collateral built to be unforgettable. We design systems that are both immediately striking and endlessly adaptable across every surface.
+      </p>
+      <div class="svc-deliverables fu">
+        <div class="svc-deliv-title">What's Included</div>
+        <ul class="svc-deliv-list">
+          <li>Brand identity & visual systems</li>
+          <li>Campaign key art & posters</li>
+          <li>Editorial & publication design</li>
+          <li>Packaging & print collateral</li>
+          <li>Social media template systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 Video Editing -->
+  <div class="svc-row" style="border-bottom:1px solid rgba(240,237,230,.07)">
+    <div>
+      <div class="svc-row-num">05</div>
+    </div>
+    <div>
+      <div class="svc-row-icon">▶</div>
+      <h2 class="svc-row-name fu">Video<br>Editing</h2>
+      <p class="svc-row-desc fu">
+        Rhythm-driven editing for commercials, social campaigns, and long-form projects. We find the story inside the footage and cut it with intention — every transition, every beat, every second of silence deliberate.
+      </p>
+      <div class="svc-deliverables fu">
+        <div class="svc-deliv-title">What's Included</div>
+        <ul class="svc-deliv-list">
+          <li>Narrative & commercial editing</li>
+          <li>Social-optimised cut-downs</li>
+          <li>Sound design & music licensing</li>
+          <li>Subtitle & caption styling</li>
+          <li>Multi-format exports</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="pricing-hd">
+    <div class="sec-tag">Investment</div>
+    <h2 class="pricing-title fu">Project<br>Tiers</h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card fu">
+      <div class="price-tier">Essentials</div>
+      <span class="price-label">Single Service · Short-form</span>
+      <p class="price-desc">Perfect for targeted social content, single-service projects, or brand owners just starting to build their visual library.</p>
+      <ul class="price-items">
+        <li>One primary deliverable</li>
+        <li>1 revision round</li>
+        <li>7–14 day turnaround</li>
+        <li>Digital delivery</li>
+      </ul>
+      <a href="contact.html" class="price-cta">Get a Quote</a>
+    </div>
+    <div class="price-card featured fu">
+      <div class="price-tier">Signature</div>
+      <span class="price-label">Multi-Service · Campaign</span>
+      <p class="price-desc">Our most popular tier — a full campaign package combining film, design, and motion for maximum impact across all platforms.</p>
+      <ul class="price-items">
+        <li>Combined service delivery</li>
+        <li>3 revision rounds</li>
+        <li>Dedicated project manager</li>
+        <li>All-format delivery package</li>
+        <li>Priority scheduling</li>
+      </ul>
+      <a href="contact.html" class="price-cta">Get a Quote</a>
+    </div>
+    <div class="price-card fu">
+      <div class="price-tier">Bespoke</div>
+      <span class="price-label">Custom · Full Studio</span>
+      <p class="price-desc">For major campaigns, long-form productions, and clients who require the full studio — scoped entirely around your vision.</p>
+      <ul class="price-items">
+        <li>Full studio engagement</li>
+        <li>Unlimited revisions</li>
+        <li>Dedicated creative team</li>
+        <li>Ongoing retainer available</li>
+        <li>White-glove delivery</li>
+      </ul>
+      <a href="contact.html" class="price-cta">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="sec-tag" style="justify-content:center; margin-bottom:28px">Let's Create</div>
+  <h2 class="cta-band-hl fu">
+    Have a project<br><span class="hollow">in mind?</span>
+  </h2>
+  <p class="cta-band-body fu">
+    We'd love to hear about it.<br>
+    Tell us what you're building and we'll tell you how we can make it extraordinary.
+  </p>
+  <div class="btns fu">
+    <a href="contact.html" class="btn-p">Start a Project</a>
+    <a href="portfolio.html" class="btn-g">See My Work</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-brand">Lakshay Kaushik</div>
+    <div class="f-tag">Based in India &nbsp;·&nbsp; Available Worldwide</div>
+  </div>
+  <div class="f-links">
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="index.html#process">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="f-right">
+    <div class="f-clbl">Get in Touch</div>
+    <!-- ▼ REPLACE: update with your actual email -->
+    <a href="mailto:hello@somethingdifferent.studio" class="f-email">hello@somethingdifferent.studio</a>
+  </div>
+  <div class="f-bottom">
+    <span>© 2025 Lakshay Kaushik</span>
+    <span>Visuals · Stories · Impact</span>
+    <span>All rights reserved</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

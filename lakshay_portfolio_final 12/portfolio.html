@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Lakshay Kaushik</title>
+  <meta name="description" content="Selected work by Lakshay Kaushik — film, motion, VFX, graphic design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* ── POSTER SECTION ── */
+    .posters-section {
+      position: relative; z-index: 1;
+      padding: 80px 52px 100px;
+      max-width: 1220px; margin: 0 auto;
+    }
+    .posters-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 48px;
+    }
+    .posters-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 100px);
+      letter-spacing: .04em; color: var(--white); line-height: 1;
+    }
+    .posters-sub {
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gray-400); text-align: right; max-width: 200px;
+    }
+
+    /* Single row — all 5 posters side by side */
+    .posters-grid-top {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    /* Marlboro bottom row hidden — merged into top row */
+    .posters-grid-bottom { display: none; }
+
+    /* Shared card styles */
+    .poster-card {
+      position: relative; overflow: hidden;
+      background: var(--gray-800); cursor: none;
+      border-radius: 2px;
+    }
+    /* Natural proportions — width 100%, height follows image */
+    .poster-card img {
+      width: 100%; height: auto; display: block;
+      transition: transform .7s cubic-bezier(.23,1,.32,1);
+      filter: grayscale(.05) contrast(1.04);
+    }
+    .poster-card:hover img {
+      transform: scale(1.04);
+      filter: grayscale(0) contrast(1.05);
+    }
+    .poster-ov {
+      position: absolute; inset: 0; background: rgba(8,8,8,0);
+      transition: background .4s; display: flex;
+      flex-direction: column; justify-content: flex-end; padding: 20px;
+    }
+    .poster-card:hover .poster-ov { background: rgba(8,8,8,.72); }
+    .poster-info {
+      transform: translateY(10px); opacity: 0;
+      transition: all .4s cubic-bezier(.23,1,.32,1);
+    }
+    .poster-card:hover .poster-info { transform: translateY(0); opacity: 1; }
+    .poster-cat {
+      font-size: 7px; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gray-400); margin-bottom: 5px;
+    }
+    .poster-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px; letter-spacing: .06em; color: var(--white);
+    }
+
+    /* ── YOUTUBE SECTION ── */
+    .yt-section {
+      position: relative; z-index: 1;
+      padding: 120px 52px 80px;
+      border-top: 1px solid rgba(240,237,230,.06);
+      max-width: 1220px; margin: 0 auto;
+    }
+    .yt-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 52px; flex-wrap: wrap; gap: 20px;
+    }
+    .yt-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 100px); letter-spacing: .04em;
+      color: var(--white); line-height: 1;
+    }
+    .yt-channel-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(240,237,230,.15); padding: 10px 20px;
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gray-200); text-decoration: none; transition: all .25s;
+    }
+    .yt-channel-link:hover { background: var(--white); color: var(--black); }
+    .yt-channel-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .yt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 3px;
+    }
+    .yt-card {
+      position: relative; background: var(--gray-800);
+      overflow: hidden; cursor: none; text-decoration: none;
+      display: block;
+    }
+    .yt-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+    .yt-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .6s cubic-bezier(.23,1,.32,1); filter: grayscale(.15);
+    }
+    .yt-thumb iframe {
+      width: 100%; height: 100%; border: 0; display: block;
+    }
+    .yt-card:hover .yt-thumb img { transform: scale(1.05); }
+    .yt-play {
+      position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      background: rgba(8,8,8,0); transition: background .3s;
+    }
+    .yt-card:hover .yt-play { background: rgba(8,8,8,.55); }
+    .yt-play-icon {
+      width: 52px; height: 52px;
+      border: 1px solid rgba(240,237,230,.5); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 18px;
+      transform: scale(0); opacity: 0;
+      transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .3s;
+    }
+    .yt-card:hover .yt-play-icon { transform: scale(1); opacity: 1; }
+    .yt-info { padding: 20px 22px 24px; }
+    .yt-info-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 17px;
+      letter-spacing: .06em; color: var(--white); margin-bottom: 6px; line-height: 1.2;
+    }
+    .yt-info-meta {
+      font-size: 8px; letter-spacing: .2em;
+      color: var(--gray-400); text-transform: uppercase;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .posters-section { padding: 60px 36px 80px; }
+      .posters-grid-top { gap: 12px; }
+    }
+    @media (max-width: 900px) {
+      .posters-section { padding: 52px 28px 72px; }
+      .posters-header { margin-bottom: 36px; }
+      /* 3 columns on tablet — wrap naturally */
+      .posters-grid-top {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .yt-section { padding: 72px 28px; }
+      .yt-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .posters-section { padding: 40px 16px 60px; }
+      .posters-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 28px; }
+      .posters-sub { text-align: left; }
+      /* 2 columns on mobile */
+      .posters-grid-top {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .yt-section { padding: 52px 16px; }
+      .yt-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 420px) {
+      .posters-grid-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div class="dots"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="Lakshay Kaushik logo" style="height:36px;width:auto;">
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Something Different</span>
+      <span class="nav-logo-sub">Studios</span>
+    </div>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="site-nav">
+    <li><a href="index.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.2v-6.1H8.7V21H3.5a.5.5 0 0 1-.5-.5v-9.7Z"/></svg></span><span>Home</span></a></li>
+    <li><a href="about.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12.2a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2Zm-7.5 8.3c.8-3.9 3.6-6.1 7.5-6.1s6.7 2.2 7.5 6.1H4.5Z"/></svg></span><span>About</span></a></li>
+    <li><a href="services.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h7v7H4v-7Zm9 0h7v7h-7v-7Zm-9 9h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></svg></span><span>Services</span></a></li>
+    <li><a href="portfolio.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2 0v6.2l3.2-3.2 4.2 4.2 1.8-1.8L18 14.7V6.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5Z"/></svg></span><span>Portfolio</span></a></li>
+    <li><a href="contact.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4V5Zm2 3.2v.5l6 4.1 6-4.1v-.5H6Zm0 3v5.8h12v-5.8l-6 4.1-6-4.1Z"/></svg></span><span>Contact</span></a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-top:120px">
+  <div class="page-hero-scan"></div>
+  <div class="page-hero-tag fu">Selected Work</div>
+  <h1 class="page-hero-hl fu">My<br><span class="hollow">Portfolio</span></h1>
+  <p class="page-hero-sub fu">Visuals, stories &amp; impact — design, motion &amp; more.</p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     POSTER DESIGNS
+═══════════════════════════════════════════ -->
+<section class="posters-section" id="design">
+  <div class="posters-header">
+    <div>
+      <div class="sec-tag">Graphic Design</div>
+      <h2 class="posters-title fu">Poster<br>Designs</h2>
+    </div>
+    <p class="posters-sub fu">Art direction,<br>editorial &amp; poster work</p>
+  </div>
+
+  <div class="posters-grid-top">
+
+    <div class="poster-card poster-outcast">
+      <img src="images/outcast.png" alt="Outcast — Music Poster">
+      <div class="poster-ov">
+        <div class="poster-info">
+          <div class="poster-cat">Music Poster · Red Edit</div>
+          <div class="poster-name">Outcast</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-card poster-marlboro">
+      <img src="images/marlboro.png" alt="Marlboro Red — Collage Art">
+      <div class="poster-ov">
+        <div class="poster-info">
+          <div class="poster-cat">Collage Art · Editorial</div>
+          <div class="poster-name">Marlboro Red</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-card poster-japan">
+      <img src="images/japan.png" alt="Japan Orange — Art Direction">
+      <div class="poster-ov">
+        <div class="poster-info">
+          <div class="poster-cat">Art Direction · Japan</div>
+          <div class="poster-name">Japan Orange</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-card poster-nyc">
+      <img src="images/nyc.png" alt="New York City — Poster">
+      <div class="poster-ov">
+        <div class="poster-info">
+          <div class="poster-cat">City Poster · Purple</div>
+          <div class="poster-name">New York City</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-card poster-kingofpop">
+      <img src="images/kingofpop.png" alt="King of Pop — Tribute Poster">
+      <div class="poster-ov">
+        <div class="poster-info">
+          <div class="poster-cat">Tribute Poster · Concert</div>
+          <div class="poster-name">King of Pop</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     YOUTUBE / VIDEO WORK
+═══════════════════════════════════════════ -->
+<section class="yt-section" id="videos">
+  <div class="yt-header">
+    <div>
+      <div class="sec-tag">Video Work</div>
+      <h2 class="yt-title fu">YouTube<br>Channel</h2>
+    </div>
+    <a href="https://www.youtube.com/@LakshayKaushik-tt2pf" target="_blank" rel="noopener" class="yt-channel-link">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+      View Channel
+    </a>
+  </div>
+
+  <div class="yt-grid" id="yt-grid">
+
+    <!-- VIDEO 1 -->
+    <div class="yt-card">
+      <div class="yt-thumb">
+        <iframe src="https://www.youtube.com/embed/nQbAbaP1qrE?rel=0" title="mcd 3d logo graphic design" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-info-title">mcd 3d logo graphic design</div>
+        <div class="yt-info-meta">Lakshay Kaushik · YouTube</div>
+      </div>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="yt-card">
+      <div class="yt-thumb">
+        <iframe src="https://www.youtube.com/embed/pZetH9v6DXs?rel=0" title="doble role clip after effect" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-info-title">doble role clip after effect</div>
+        <div class="yt-info-meta">Lakshay Kaushik · YouTube</div>
+      </div>
+    </div>
+
+    <!-- VIDEO 3 -->
+    <div class="yt-card">
+      <div class="yt-thumb">
+        <iframe src="https://www.youtube.com/embed/IH9Rt2AeOio?rel=0" title="AI video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-info-title">AI video</div>
+        <div class="yt-info-meta">Lakshay Kaushik · YouTube</div>
+      </div>
+    </div>
+
+    <!-- VIDEO 4 -->
+    <div class="yt-card">
+      <div class="yt-thumb">
+        <iframe src="https://www.youtube.com/embed/W0FB5XBReoE?rel=0" title="red dead redemption 2 teaser" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-info-title">red dead redemption 2 teaser
+</div>
+        <div class="yt-info-meta">Lakshay Kaushik · YouTube</div>
+      </div>
+    </div>
+
+    <!-- VIDEO 5 -->
+    <div class="yt-card">
+      <div class="yt-thumb">
+        <iframe src="https://www.youtube.com/embed/Z0ayAT7LAKM?rel=0" title="Matte painting animation" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-info-title">Matte painting animation</div>
+        <div class="yt-info-meta">Lakshay Kaushik · YouTube</div>
+      </div>
+    </div>
+
+    <!-- VIDEO 6 -->
+    <div class="yt-card">
+      <div class="yt-thumb">
+        <iframe src="https://www.youtube.com/embed/whf-GwvV_Fw?rel=0" title="Roto Walk" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-info-title">Roto Walk</div>
+        <div class="yt-info-meta">Lakshay Kaushik · YouTube</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="sec-tag" style="justify-content:center; margin-bottom:28px">Your Project Next</div>
+  <h2 class="cta-band-hl fu">
+    Let's add<br><span class="hollow">yours</span><br>to the list.
+  </h2>
+  <p class="cta-band-body fu">
+    We're taking on new projects now.<br>
+    Tell us what you're building.
+  </p>
+  <div class="btns fu">
+    <a href="contact.html" class="btn-p">Start a Project</a>
+    <a href="services.html" class="btn-g">My Services</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-brand">Lakshay Kaushik</div>
+    <div class="f-tag">Based in India &nbsp;·&nbsp; Available Worldwide</div>
+  </div>
+  <div class="f-links">
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="index.html#process">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="f-right">
+    <div class="f-clbl">Get in Touch</div>
+    <a href="mailto:somethingdifferen07@gmail.com" class="f-email">somethingdifferen07@gmail.com</a>
+  </div>
+  <div class="f-bottom">
+    <span>© 2025 Lakshay Kaushik</span>
+    <span>Visuals · Stories · Impact</span>
+    <span>All rights reserved</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

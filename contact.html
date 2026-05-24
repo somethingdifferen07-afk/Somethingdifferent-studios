@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Lakshay Kaushik</title>
+  <meta name="description" content="Get in touch with Lakshay Kaushik to start your project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* CONTACT LAYOUT */
+    .contact-wrap {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; max-width: 1220px; margin: 0 auto;
+      padding: 100px 52px 140px;
+    }
+
+    /* LEFT — Info */
+    .contact-info { display: flex; flex-direction: column; gap: 52px; }
+    .contact-detail-title {
+      font-size: 8px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--gray-600); margin-bottom: 12px;
+    }
+    .contact-detail-val {
+      font-size: 13px; letter-spacing: .04em; color: var(--gray-200);
+    }
+    .contact-detail-val a {
+      color: var(--gray-200); text-decoration: none; transition: color .25s;
+    }
+    .contact-detail-val a:hover { color: var(--white); }
+
+    .social-links { display: flex; flex-direction: column; gap: 14px; }
+    .social-link {
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gray-400); text-decoration: none;
+      display: flex; align-items: center; gap: 12px; transition: color .25s;
+    }
+    .social-link::before {
+      content: '↗'; color: var(--gray-700); transition: color .25s;
+    }
+    .social-link:hover { color: var(--white); }
+    .social-link:hover::before { color: var(--white); }
+
+    .contact-avail {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(240,237,230,.1);
+      padding: 12px 20px; font-size: 9px;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gray-400);
+    }
+    .contact-avail::before {
+      content: ''; width: 7px; height: 7px; background: #4caf50;
+      border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: .4 } }
+
+    /* RIGHT — Form */
+    .contact-form-wrap {}
+    .form-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 72px); letter-spacing: .04em;
+      color: var(--white); line-height: 1; margin-bottom: 52px;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .form-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 3px; }
+
+    .form-label {
+      font-size: 8px; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gray-600);
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: var(--gray-900); border: 1px solid rgba(240,237,230,.08);
+      color: var(--white); font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: .04em;
+      padding: 14px 18px; outline: none; transition: border-color .25s;
+      width: 100%;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--gray-600); }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus { border-color: rgba(240,237,230,.35); }
+    .form-select { appearance: none; cursor: none; }
+    .form-select option { background: var(--gray-900); }
+    .form-textarea { resize: vertical; min-height: 140px; }
+
+    .form-submit {
+      display: inline-block; margin-top: 24px;
+      padding: 16px 48px; background: var(--white); color: var(--black);
+      font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: .2em; text-transform: uppercase;
+      border: none; cursor: none; transition: opacity .3s;
+      width: 100%;
+    }
+    .form-submit:hover { opacity: .88; }
+
+    #form-success {
+      margin-top: 20px; font-size: 9px; letter-spacing: .2em;
+      text-transform: uppercase; color: #4caf50;
+      opacity: 0; transition: opacity .4s;
+    }
+    #form-error {
+      margin-top: 14px; font-size: 9px; letter-spacing: .16em;
+      text-transform: uppercase; color: #ff8a80;
+      opacity: 0; transition: opacity .4s;
+    }
+
+    /* FAQ */
+    .faq {
+      position: relative; z-index: 1;
+      padding: 100px 52px; background: var(--gray-900);
+      border-top: 1px solid rgba(240,237,230,.06);
+    }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 72px); letter-spacing: .04em;
+      color: var(--white); line-height: 1; margin-bottom: 64px;
+    }
+    .faq-item {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(240,237,230,.07);
+    }
+    .faq-q {
+      font-family: 'Instrument Serif', serif; font-size: 18px;
+      color: var(--white); cursor: none; transition: color .3s;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-q:hover { color: var(--gray-200); }
+    .faq-a {
+      font-size: 10px; line-height: 1.95; color: var(--gray-400);
+      letter-spacing: .04em; margin-top: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .contact-wrap { grid-template-columns: 1fr; gap: 60px; padding: 80px 24px 100px; }
+      .form-row { grid-template-columns: 1fr; }
+      .faq { padding: 80px 24px; }
+    }
+    @media (max-width: 600px) {
+      .page-hero {
+        padding: 104px 16px 34px !important;
+        min-height: auto;
+      }
+      .page-hero-tag {
+        font-size: 8px;
+        letter-spacing: .2em;
+        margin-bottom: 16px;
+      }
+      .page-hero-hl {
+        font-size: clamp(52px, 20vw, 76px);
+        line-height: .86;
+      }
+      .page-hero-sub {
+        font-size: 9px;
+        line-height: 1.8;
+        margin-top: 20px;
+      }
+      .contact-wrap { gap: 38px; padding: 42px 16px 68px; }
+      .contact-info { gap: 34px; }
+      .contact-avail {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 8px;
+        letter-spacing: .18em;
+        line-height: 1.7;
+      }
+      .contact-detail-title {
+        font-size: 7px;
+        letter-spacing: .22em;
+        margin-bottom: 10px;
+      }
+      .contact-detail-val {
+        font-size: 11px;
+        line-height: 1.8;
+        letter-spacing: .03em;
+      }
+      .form-title { font-size: 42px; margin-bottom: 32px; }
+      .contact-detail-val,
+      .social-link { overflow-wrap: anywhere; }
+      .social-link {
+        align-items: flex-start;
+        font-size: 8px;
+        letter-spacing: .14em;
+        line-height: 1.7;
+      }
+      .form-input,
+      .form-select,
+      .form-textarea { padding: 13px 14px; }
+      .faq { padding: 56px 16px; }
+    }
+  </style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div class="dots"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="Lakshay Kaushik logo" style="height:36px;width:auto;">
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Something Different</span>
+      <span class="nav-logo-sub">Studios</span>
+    </div>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="site-nav">
+    <li><a href="index.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.2v-6.1H8.7V21H3.5a.5.5 0 0 1-.5-.5v-9.7Z"/></svg></span><span>Home</span></a></li>
+    <li><a href="about.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12.2a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2Zm-7.5 8.3c.8-3.9 3.6-6.1 7.5-6.1s6.7 2.2 7.5 6.1H4.5Z"/></svg></span><span>About</span></a></li>
+    <li><a href="services.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h7v7H4v-7Zm9 0h7v7h-7v-7Zm-9 9h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></svg></span><span>Services</span></a></li>
+    <li><a href="portfolio.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2 0v6.2l3.2-3.2 4.2 4.2 1.8-1.8L18 14.7V6.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5Z"/></svg></span><span>Portfolio</span></a></li>
+    <li><a href="contact.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4V5Zm2 3.2v.5l6 4.1 6-4.1v-.5H6Zm0 3v5.8h12v-5.8l-6 4.1-6-4.1Z"/></svg></span><span>Contact</span></a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-top:120px">
+  <div class="page-hero-scan"></div>
+  <div class="page-hero-tag fu">Let's Talk</div>
+  <h1 class="page-hero-hl fu">Start a<br><span class="hollow">Project</span></h1>
+  <p class="page-hero-sub fu">Tell us about what you're building. We'll respond within 24 hours.</p>
+</section>
+
+<!-- CONTACT BODY -->
+<div class="contact-wrap">
+
+  <!-- INFO COLUMN -->
+  <div class="contact-info">
+
+    <div class="contact-avail fu">Currently Available for New Projects</div>
+
+    <div class="fu">
+      <div class="contact-detail-title">Email</div>
+      <div class="contact-detail-val">
+        <a href="mailto:somethingdifferen07@gmail.com">somethingdifferen07@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="fu">
+      <div class="contact-detail-title">WhatsApp</div>
+      <div class="contact-detail-val">
+        <a href="https://wa.me/918527200877" target="_blank" rel="noopener">+91 85272 00877</a>
+      </div>
+    </div>
+
+    <div class="fu">
+      <div class="contact-detail-title">Location</div>
+      <!-- ▼ REPLACE: update with your actual city/location if desired -->
+      <div class="contact-detail-val">Based in India &nbsp;·&nbsp; Available Worldwide</div>
+    </div>
+
+    <div class="fu">
+      <div class="contact-detail-title">Response Time</div>
+      <div class="contact-detail-val">Within 24 hours</div>
+    </div>
+
+    <div class="fu">
+      <div class="contact-detail-title">Follow the Studio</div>
+      <div class="social-links">
+        <a href="https://instagram.com/somethingelse_lakshay" target="_blank" rel="noopener" class="social-link">Instagram — @somethingelse_lakshay</a>
+        <a href="https://wa.me/918527200877" target="_blank" rel="noopener" class="social-link">WhatsApp — +91 85272 00877</a>
+        <a href="https://www.youtube.com/@LakshayKaushik-tt2pf" target="_blank" rel="noopener" class="social-link">YouTube — Something Different</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FORM COLUMN -->
+  <div class="contact-form-wrap fu">
+    <h2 class="form-title">Tell Us<br>Everything.</h2>
+
+    <form id="contact-form" action="https://formspree.io/f/mvzybpbe" method="POST">
+      <input type="hidden" name="_subject" value="New portfolio enquiry">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="f-name">Your Name</label>
+          <input class="form-input" id="f-name" name="name"
+                 type="text" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-email">Email Address</label>
+          <input class="form-input" id="f-email" name="email"
+                 type="email" placeholder="you@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="f-company">Company / Brand</label>
+          <input class="form-input" id="f-company" name="company"
+                 type="text" placeholder="Optional">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-budget">Estimated Budget</label>
+          <select class="form-select form-input" id="f-budget" name="budget">
+            <option value="">Select range</option>
+            <option value="small">Under ₹50,000</option>
+            <option value="medium">₹50,000 – ₹2,00,000</option>
+            <option value="large">₹2,00,000 – ₹5,00,000</option>
+            <option value="xlarge">₹5,00,000+</option>
+            <option value="discuss">Let's discuss</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="f-service">Service Required</label>
+        <select class="form-select form-input" id="f-service" name="service">
+          <option value="">Select a service</option>
+          <option value="film">Film Production</option>
+          <option value="motion">Motion Graphics</option>
+          <option value="vfx">VFX &amp; Compositing</option>
+          <option value="design">Graphic Design</option>
+          <option value="edit">Video Editing</option>
+          <option value="multi">Multiple Services</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="f-message">Tell Us About Your Project</label>
+        <textarea class="form-textarea" id="f-message" name="message"
+                  placeholder="Describe your project, goals, timeline, and anything else that would help us understand what you're building…"
+                  required></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Send Message</button>
+      <div id="form-success">Message sent — we'll be in touch within 24 hours.</div>
+      <div id="form-error">Something went wrong. Please try again or email directly.</div>
+
+    </form>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="sec-tag">Quick Answers</div>
+    <h2 class="faq-title fu">Frequently<br>Asked</h2>
+
+    <div class="faq-item fu">
+      <div class="faq-q">How quickly can you start a project?</div>
+      <p class="faq-a">It depends on our current schedule. We typically onboard new projects within 1–2 weeks of signing. If you have an urgent deadline, mention it in your brief and we'll do our best to accommodate.</p>
+    </div>
+
+    <div class="faq-item fu">
+      <div class="faq-q">Do you work with clients outside India?</div>
+      <p class="faq-a">Absolutely. A significant portion of our work comes from international clients. We're comfortable working across time zones via video call, project management tools, and async review cycles.</p>
+    </div>
+
+    <div class="faq-item fu">
+      <div class="faq-q">What does your revision process look like?</div>
+      <p class="faq-a">Revision rounds depend on the project tier. Essentials projects include one round; Signature includes three; Bespoke engagements are unlimited within scope. All revisions are clearly defined in the contract.</p>
+    </div>
+
+    <div class="faq-item fu">
+      <div class="faq-q">Can I commission just a single service?</div>
+      <p class="faq-a">Yes. While many clients work with us across multiple services, we're happy to take on focused single-service projects — a standalone brand film, a motion sequence, or a graphic identity.</p>
+    </div>
+
+    <div class="faq-item fu">
+      <div class="faq-q">How is payment structured?</div>
+      <p class="faq-a">We typically work on a 50% deposit on project kick-off and 50% on final delivery. For larger retainer engagements we can discuss monthly billing arrangements.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-brand">Lakshay Kaushik</div>
+    <div class="f-tag">Based in India &nbsp;·&nbsp; Available Worldwide</div>
+  </div>
+  <div class="f-links">
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="index.html#process">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="f-right">
+    <div class="f-clbl">Get in Touch</div>
+    <a href="mailto:somethingdifferen07@gmail.com" class="f-email">somethingdifferen07@gmail.com</a>
+  </div>
+  <div class="f-bottom">
+    <span>© 2025 Lakshay Kaushik</span>
+    <span>Visuals · Stories · Impact</span>
+    <span>All rights reserved</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

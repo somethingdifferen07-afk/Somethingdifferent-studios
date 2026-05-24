@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Something Different Studios</title>
+  <meta name="description" content="Learn about Something Different Studios — a creative collective based in India, working worldwide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* STUDIO STORY */
+    .story {
+      position: relative; z-index: 1; padding: 120px 52px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: start; max-width: 1220px; margin: 0 auto;
+    }
+    .story-hl {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(36px, 4vw, 60px); line-height: 1.14;
+      color: var(--white); margin-bottom: 32px;
+    }
+    .story-hl em { font-style: italic; color: var(--gray-400); }
+    .story-body  { font-size: 11px; line-height: 2.1; color: var(--gray-200); letter-spacing: .04em; }
+    .story-body p + p { margin-top: 20px; }
+    /* PHOTO */
+    .about-photo-wrap {
+      display: flex; justify-content: center; align-items: flex-start;
+      padding-top: 8px;
+    }
+    .about-photo {
+      width: 100%; max-width: 420px;
+      aspect-ratio: 3/4; object-fit: cover; object-position: top center;
+      filter: grayscale(.15) contrast(1.05);
+      border: 1px solid rgba(240,237,230,.1);
+    }
+
+
+    /* TEAM / FOUNDERS */
+    .team {
+      position: relative; z-index: 1; padding: 80px 52px 120px;
+      max-width: 1220px; margin: 0 auto;
+    }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 52px;
+    }
+    .team-card {
+      position: relative; overflow: hidden; background: var(--gray-800);
+      transition: background .4s; padding: 44px 36px;
+      border: 1px solid rgba(240,237,230,.05);
+    }
+    .team-card:hover { background: var(--gray-700); }
+    /* ▼ REPLACE: swap src inside .team-img with your actual team member photos */
+    .team-img {
+      width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+      margin-bottom: 28px; filter: grayscale(.2);
+      border: 1px solid rgba(240,237,230,.12);
+    }
+    .team-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: .08em; color: var(--white); margin-bottom: 6px; }
+    .team-role { font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 20px; }
+    .team-bio  { font-size: 10px; line-height: 1.9; color: var(--gray-200); }
+
+    /* VALUES */
+    .values {
+      position: relative; z-index: 1; padding: 80px 0 120px;
+      background: var(--gray-900); border-top: 1px solid rgba(240,237,230,.06);
+    }
+    .values-hd { padding: 0 52px; margin-bottom: 60px; max-width: 1220px; margin-left: auto; margin-right: auto; }
+    .values-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 100px); letter-spacing: .04em; color: var(--white); line-height: 1;
+    }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(240,237,230,.07);
+    }
+    .val-item {
+      padding: 52px 36px; border-right: 1px solid rgba(240,237,230,.05); transition: background .3s;
+    }
+    .val-item:last-child { border-right: none; }
+    .val-item:hover { background: var(--gray-800); }
+    .val-num  { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--gray-700); line-height: 1; margin-bottom: 20px; }
+    .val-name { font-family: 'Instrument Serif', serif; font-size: 20px; color: var(--white); margin-bottom: 16px; font-style: italic; }
+    .val-txt  { font-size: 10px; line-height: 1.9; color: var(--gray-400); letter-spacing: .04em; }
+
+    /* STATS BAND */
+    .stats-band {
+      position: relative; z-index: 1; padding: 100px 52px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;
+      border-top: 1px solid rgba(240,237,230,.06);
+      max-width: 1220px; margin: 0 auto;
+    }
+    .stat-block { text-align: center; padding: 40px 20px; border-right: 1px solid rgba(240,237,230,.06); }
+    .stat-block:last-child { border-right: none; }
+    .stat-big  { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 7vw, 96px); color: var(--white); letter-spacing: .04em; line-height: 1; display: block; }
+    .stat-desc { font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: var(--gray-400); margin-top: 12px; }
+
+    /* TESTIMONIAL */
+    .testi {
+      position: relative; z-index: 1; padding: 100px 52px 120px;
+      border-top: 1px solid rgba(240,237,230,.06); border-bottom: 1px solid rgba(240,237,230,.06);
+      background: var(--gray-900);
+    }
+    .testi-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .q-mark { font-family: 'Instrument Serif', serif; font-size: 72px; color: var(--gray-700); line-height: 1; }
+    .t-text {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(20px, 2.8vw, 32px); line-height: 1.55;
+      color: var(--white); margin-bottom: 36px; font-style: italic;
+    }
+    .t-author { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-400); }
+    .t-dots  { display: flex; justify-content: center; gap: 8px; margin-top: 36px; }
+    .td { width: 5px; height: 5px; border-radius: 50%; background: var(--gray-600); cursor: none; transition: background .3s; }
+    .td.a { background: var(--white); }
+
+    @media (max-width: 900px) {
+      .story  { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+      .team   { padding: 60px 24px 80px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .values-hd { padding: 0 24px; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .stats-band { grid-template-columns: 1fr 1fr; padding: 60px 24px; }
+    }
+    @media (max-width: 600px) {
+      .story { padding: 60px 16px; }
+      .about-photo { max-width: 320px; }
+      .team { padding: 48px 16px 64px; }
+      .team-card { padding: 34px 24px; }
+      .values-hd { padding: 0 16px; }
+      .values-grid,
+      .stats-band { grid-template-columns: 1fr; }
+      .stats-band { padding: 48px 16px; }
+      .stat-block { border-right: 0; border-bottom: 1px solid rgba(240,237,230,.06); }
+    }
+  </style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div class="dots"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <!-- ▼ REPLACE: swap src with your actual logo file -->
+    <img src="images/logo.svg" alt="Something Different Studios logo"
+         onerror="this.style.display='none'">
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Something Different</span>
+      <span class="nav-logo-sub">Studios</span>
+    </div>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="site-nav">
+    <li><a href="index.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.2v-6.1H8.7V21H3.5a.5.5 0 0 1-.5-.5v-9.7Z"/></svg></span><span>Home</span></a></li>
+    <li><a href="about.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12.2a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2Zm-7.5 8.3c.8-3.9 3.6-6.1 7.5-6.1s6.7 2.2 7.5 6.1H4.5Z"/></svg></span><span>About</span></a></li>
+    <li><a href="services.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h7v7H4v-7Zm9 0h7v7h-7v-7Zm-9 9h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></svg></span><span>Services</span></a></li>
+    <li><a href="portfolio.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2 0v6.2l3.2-3.2 4.2 4.2 1.8-1.8L18 14.7V6.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5Z"/></svg></span><span>Portfolio</span></a></li>
+    <li><a href="contact.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4V5Zm2 3.2v.5l6 4.1 6-4.1v-.5H6Zm0 3v5.8h12v-5.8l-6 4.1-6-4.1Z"/></svg></span><span>Contact</span></a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-top:120px">
+  <div class="page-hero-scan"></div>
+  <div class="page-hero-tag fu">About Me</div>
+  <h1 class="page-hero-hl fu">Lakshay<br><span class="hollow">Kaushik</span></h1>
+  <p class="page-hero-sub fu">Creating cinematic visuals, immersive motion, and impactful digital storytelling — based in India, working worldwide.</p>
+</section>
+
+<!-- MARQUEE -->
+<div class="marq-wrap">
+  <div class="marq-track">
+    <span class="marq-item a">Based in India</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Working Worldwide</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">3+ Years</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">25+ Projects</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">10+ Clients</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Something Different</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Based in India</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Working Worldwide</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">3+ Years</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">25+ Projects</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">10+ Clients</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Something Different</span><span class="marq-item marq-dot">·</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story">
+  <div class="about-photo-wrap">
+    <img class="about-photo" src="images/lakshay.png" alt="Lakshay Kaushik">
+  </div>
+  <div>
+    <h2 class="story-hl fu">I don't just make visuals.<br><em>I make things</em><br>people feel.</h2>
+    <div class="story-body fu">
+      <p>I'm a first-year animator and visual artist focused on creating cinematic visuals, immersive motion, and impactful digital storytelling. I work across VFX &amp; compositing, motion graphics, graphic design, video editing, and film production — combining technical skills with creativity to bring ideas to life.</p>
+      <p>My work is inspired by modern film aesthetics, experimental visuals, and storytelling that creates emotion and atmosphere. Whether it's designing motion pieces, editing cinematic sequences, building visual effects, or producing short-form films, I enjoy turning concepts into polished visual experiences.</p>
+      <p>As a freelance creative, I'm always looking to collaborate on projects involving music videos, short films, promotional content, social media visuals, and creative branding. I'm constantly learning, experimenting, and pushing my skills further with every project I create.</p>
+      <p>If you're looking for someone who's passionate about visuals, detail-oriented, and creatively driven — I'd love to work together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-block fu">
+    <span class="stat-big">25+</span>
+    <span class="stat-desc">Projects Completed</span>
+  </div>
+  <div class="stat-block fu">
+    <span class="stat-big">10+</span>
+    <span class="stat-desc">Happy Clients</span>
+  </div>
+  <div class="stat-block fu">
+    <span class="stat-big">3+</span>
+    <span class="stat-desc">Years of Studio Work</span>
+  </div>
+  <div class="stat-block fu">
+    <span class="stat-big">5</span>
+    <span class="stat-desc">Core Disciplines</span>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="values-hd">
+    <div class="sec-tag">What Drives Us</div>
+    <h2 class="values-title fu">MY<br>Values</h2>
+  </div>
+  <div class="values-grid">
+    <div class="val-item fu">
+      <div class="val-num">01</div>
+      <div class="val-name">Craft First</div>
+      <p class="val-txt">We never cut corners. Every frame, colour choice, and typographic decision is deliberate. Quality is not a promise — it's a baseline.</p>
+    </div>
+    <div class="val-item fu">
+      <div class="val-num">02</div>
+      <div class="val-name">Fearless Ideas</div>
+      <p class="val-txt">Safe creative work is wasted creative work. We push every concept past comfortable into something genuinely unexpected.</p>
+    </div>
+    <div class="val-item fu">
+      <div class="val-num">03</div>
+      <div class="val-name">Honest Partnership</div>
+      <p class="val-txt">We are collaborators, not vendors. We challenge briefs, ask hard questions, and invest fully in every project we accept.</p>
+    </div>
+    <div class="val-item fu">
+      <div class="val-num">04</div>
+      <div class="val-name">Endless Curiosity</div>
+      <p class="val-txt">The best work comes from staying genuinely excited about images, stories, and the infinite ways they can be made differently.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="team">
+  <div class="sec-tag">What I Do</div>
+  <h2 class="page-hero-hl fu" style="font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,7vw,100px); letter-spacing:.04em; color:var(--white); line-height:1; margin-bottom:0">My<br>Skills</h2>
+  <div class="team-grid">
+    <div class="team-card fu">
+      <div class="team-name">VFX & Compositing</div>
+      <div class="team-role">Visual Effects</div>
+      <p class="team-bio">Building immersive visual effects and compositing sequences that seamlessly blend reality with imagination — frame by frame.</p>
+    </div>
+    <div class="team-card fu">
+      <div class="team-name">Motion Graphics</div>
+      <div class="team-role">Animation · Design</div>
+      <p class="team-bio">Designing kinetic type, animated identities, and motion sequences that communicate with energy and visual impact.</p>
+    </div>
+    <div class="team-card fu">
+      <div class="team-name">Video Editing</div>
+      <div class="team-role">Post Production</div>
+      <p class="team-bio">Crafting cinematic cuts for music videos, short films, and promotional content — pacing, colour, and sound treated as one.</p>
+    </div>
+    <div class="team-card fu">
+      <div class="team-name">Graphic Design</div>
+      <div class="team-role">Branding · Print · Digital</div>
+      <p class="team-bio">Creating bold visual identities, posters, and digital assets that are built to be instantly recognisable and creatively distinctive.</p>
+    </div>
+    <div class="team-card fu">
+      <div class="team-name">Film Production</div>
+      <div class="team-role">Direction · Cinematography</div>
+      <p class="team-bio">Producing short-form films and creative content from concept to screen — driven by storytelling, atmosphere, and cinematic craft.</p>
+    </div>
+    <div class="team-card fu">
+      <div class="team-name">Creative Collaboration</div>
+      <div class="team-role">Freelance · Remote</div>
+      <p class="team-bio">Open to collaborating on music videos, social media visuals, branded content, and experimental projects — wherever you are.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="q-mark">"</div>
+    <p class="t-text" id="tt">Working with Something Different Studios transformed how our audience perceives us. The results were beyond anything we imagined possible.</p>
+    <div class="t-author" id="ta">— Alex Chen · Creative Director, NEXUS Labs</div>
+    <div class="t-dots">
+      <div class="td a" onclick="setT(0)"></div>
+      <div class="td"   onclick="setT(1)"></div>
+      <div class="td"   onclick="setT(2)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="sec-tag" style="justify-content:center; margin-bottom:28px">Work Together</div>
+  <h2 class="cta-band-hl fu">
+    Ready to create<br><span class="hollow">something</span><br>different?
+  </h2>
+  <p class="cta-band-body fu">
+    I take on select projects worldwide.<br>
+    Let's talk about yours.
+  </p>
+  <div class="btns fu">
+    <a href="contact.html" class="btn-p">Start a Project</a>
+    <a href="portfolio.html" class="btn-g">View Our Work</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-brand">Lakshay Kaushik</div>
+    <div class="f-tag">Based in India &nbsp;·&nbsp; Available Worldwide</div>
+  </div>
+  <div class="f-links">
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="index.html#process">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="f-right">
+    <div class="f-clbl">Get in Touch</div>
+    <!-- ▼ REPLACE: update with your actual email -->
+    <a href="mailto:hello@somethingdifferent.studio" class="f-email">hello@somethingdifferent.studio</a>
+  </div>
+  <div class="f-bottom">
+    <span>© 2025 Lakshay Kaushik</span>
+    <span>Visuals · Stories · Impact</span>
+    <span>All rights reserved</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

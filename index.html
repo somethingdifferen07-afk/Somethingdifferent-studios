@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Something Different Studios</title>
+  <meta name="description" content="Something Different Studios — Visuals, Films & Stories for clients worldwide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Index-page-specific styles -->
+  <style>
+    /* HERO */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 0 52px 88px;
+      overflow: hidden; z-index: 1;
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-rings { position: absolute; top: -80px; right: -120px; }
+    .hero-corner {
+      position: absolute; width: 20px; height: 20px;
+      border-color: rgba(240,237,230,.18);
+    }
+    .corner-tl { top: 88px; left: 52px; border-top: 1px solid; border-left: 1px solid; }
+    .corner-tr { top: 88px; right: 52px; border-top: 1px solid; border-right: 1px solid; }
+    .corner-bl { bottom: 88px; left: 52px; border-bottom: 1px solid; border-left: 1px solid; }
+    .corner-br { bottom: 88px; right: 52px; border-bottom: 1px solid; border-right: 1px solid; }
+    .hero-scan {
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,237,230,.12), transparent);
+      animation: scan 8s linear infinite; z-index: 2;
+    }
+    @keyframes scan { 0% { top: 0% } 100% { top: 100% } }
+
+    .hero-tag {
+      font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--gray-400); margin-bottom: 32px;
+      display: flex; align-items: center; gap: 14px; position: relative; z-index: 2;
+    }
+    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--gray-600); }
+
+    .hero-hl {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 10.5vw, 148px);
+      line-height: .92; letter-spacing: .025em;
+      color: var(--white); margin-bottom: 52px; position: relative; z-index: 2;
+    }
+    .hero-hl .l2 {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(240,237,230,.28);
+      padding-left: clamp(60px, 9vw, 130px);
+    }
+    .hero-hl .l3 { color: var(--gray-400); padding-left: clamp(30px, 4.5vw, 64px); }
+
+    .hero-bottom {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; position: relative; z-index: 2;
+    }
+    .hero-left   { display: flex; flex-direction: column; gap: 20px; }
+    .hero-location { font-size: 9px; letter-spacing: .2em; color: var(--gray-400); text-transform: uppercase; }
+    .hero-tagline  { font-size: 10px; line-height: 2; color: var(--gray-200); letter-spacing: .05em; max-width: 300px; }
+    .hero-stats  { display: flex; gap: 44px; align-items: flex-end; }
+    .stat-num    { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--white); letter-spacing: .04em; line-height: 1; display: block; }
+    .stat-lbl    { font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: var(--gray-400); }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(240,237,230,.12); padding: 8px 16px;
+      font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-400);
+    }
+    .hero-pill::before {
+      content: ''; width: 6px; height: 6px; background: #4caf50;
+      border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: .4 } }
+
+    .scroll-ind {
+      position: absolute; right: 52px; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 3;
+    }
+    .scroll-ind span {
+      font-size: 8px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gray-400); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 72px;
+      background: linear-gradient(to bottom, var(--gray-600), transparent);
+      overflow: hidden; position: relative;
+    }
+    .scroll-line::after {
+      content: ''; position: absolute; top: -100%; left: 0;
+      width: 100%; height: 100%; background: var(--white);
+      animation: sd 2.2s ease-in-out infinite;
+    }
+    @keyframes sd { 0% { top: -100% } 100% { top: 100% } }
+
+    /* ABOUT STRIP */
+    .about {
+      position: relative; z-index: 1; padding: 140px 52px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center; max-width: 1220px; margin: 0 auto;
+    }
+    .about-hl {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(34px, 3.8vw, 56px); line-height: 1.16;
+      color: var(--white); margin-bottom: 28px;
+    }
+    .about-hl em { font-style: italic; color: var(--gray-400); }
+    .about-body { font-size: 11px; line-height: 2; color: var(--gray-200); letter-spacing: .04em; }
+    .about-feats { display: flex; flex-direction: column; gap: 28px; }
+    .af {
+      border-left: 1px solid var(--gray-700); padding-left: 22px;
+      transition: border-color .3s;
+    }
+    .af:hover { border-color: var(--gray-400); }
+    .af-lbl { font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 8px; }
+    .af-txt  { font-size: 11px; line-height: 1.85; color: var(--gray-200); }
+
+    /* SERVICES */
+    .services { position: relative; z-index: 1; padding: 80px 0 140px; }
+    .svc-hd {
+      padding: 0 52px; margin-bottom: 60px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      max-width: 1220px; margin-left: auto; margin-right: auto;
+    }
+    .svc-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 100px); letter-spacing: .04em;
+      color: var(--white); line-height: 1;
+    }
+    .svc-intro {
+      font-size: 10px; line-height: 2; color: var(--gray-400);
+      max-width: 240px; text-align: right; letter-spacing: .04em;
+    }
+    .svc-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid rgba(240,237,230,.07);
+    }
+    .svc-item {
+      padding: 44px 32px;
+      border-right: 1px solid rgba(240,237,230,.05);
+      border-bottom: 1px solid rgba(240,237,230,.05);
+      position: relative; overflow: hidden; transition: background .4s; cursor: none;
+    }
+    .svc-item:last-child { border-right: none; }
+    .svc-item::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 0; background: var(--gray-800);
+      transition: height .5s cubic-bezier(.23,1,.32,1); z-index: 0;
+    }
+    .svc-item:hover::before { height: 100%; }
+    .svc-item > * { position: relative; z-index: 1; }
+    .svc-num  { font-size: 9px; letter-spacing: .2em; color: var(--gray-600); margin-bottom: 36px; }
+    .svc-icon { font-size: 22px; margin-bottom: 18px; line-height: 1; color: var(--gray-400); }
+    .svc-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: .08em; color: var(--white); margin-bottom: 14px; }
+    .svc-desc-txt { font-size: 9px; line-height: 1.95; color: var(--gray-400); letter-spacing: .04em; }
+    .svc-arrow {
+      position: absolute; bottom: 24px; right: 24px; font-size: 16px;
+      color: var(--gray-600); transform: rotate(-45deg); transition: transform .3s, color .3s;
+    }
+    .svc-item:hover .svc-arrow { transform: rotate(0deg); color: var(--white); }
+
+    /* WORK PREVIEW */
+    .work { position: relative; z-index: 1; padding: 80px 0 0; }
+    .work-hd { padding: 0 52px 60px; max-width: 1220px; margin: 0 auto; }
+    .work-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 100px); letter-spacing: .04em;
+      color: var(--white); line-height: 1; margin-bottom: 6px;
+    }
+    .work-sub { font-size: 9px; letter-spacing: .22em; color: var(--gray-400); text-transform: uppercase; }
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; margin: 0 3px; }
+    .wi { position: relative; overflow: hidden; cursor: none; background: var(--gray-800); aspect-ratio: 4/3; }
+    .wi.tall { grid-row: span 2; aspect-ratio: auto; }
+    /* ▼ REPLACE: update src attributes inside .wi elements with your actual portfolio images */
+    .wi img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .7s cubic-bezier(.23,1,.32,1);
+      filter: grayscale(.25) contrast(1.05);
+    }
+    .wi:hover img { transform: scale(1.06); }
+    .wi-ov {
+      position: absolute; inset: 0; background: rgba(8,8,8,0);
+      transition: background .4s; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 28px;
+    }
+    .wi:hover .wi-ov { background: rgba(8,8,8,.72); }
+    .wi-info {
+      transform: translateY(16px); opacity: 0;
+      transition: all .4s cubic-bezier(.23,1,.32,1);
+    }
+    .wi:hover .wi-info { transform: translateY(0); opacity: 1; }
+    .wi-cat  { font-size: 8px; letter-spacing: .25em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 6px; }
+    .wi-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .06em; color: var(--white); }
+
+    /* Work placeholder cells (shown when no images) */
+    .wi-placeholder {
+      width: 100%; height: 100%; min-height: 240px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gray-800); color: var(--gray-600);
+      font-size: 8px; letter-spacing: .2em; text-transform: uppercase;
+    }
+
+    /* PROCESS */
+    .process {
+      position: relative; z-index: 1; padding: 140px 52px;
+      max-width: 1220px; margin: 0 auto;
+    }
+    .proc-hd {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: end; margin-bottom: 72px;
+    }
+    .proc-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 100px); letter-spacing: .04em;
+      color: var(--white); line-height: 1;
+    }
+    .proc-intro { font-size: 10px; line-height: 2; color: var(--gray-400); letter-spacing: .04em; }
+    .proc-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(240,237,230,.07);
+    }
+    .ps {
+      padding: 44px 28px;
+      border-right: 1px solid rgba(240,237,230,.05);
+      transition: background .3s;
+    }
+    .ps:last-child { border-right: none; }
+    .ps:hover { background: var(--gray-900); }
+    .ps-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 56px;
+      color: var(--gray-700); line-height: 1; margin-bottom: 20px;
+      transition: color .3s;
+    }
+    .ps:hover .ps-num { color: var(--gray-600); }
+    .ps-title { font-family: 'Instrument Serif', serif; font-size: 18px; color: var(--white); margin-bottom: 14px; }
+    .ps-txt   { font-size: 10px; line-height: 1.9; color: var(--gray-400); letter-spacing: .04em; }
+
+    /* TESTIMONIAL */
+    .testi {
+      position: relative; z-index: 1; padding: 100px 52px 120px;
+      border-top: 1px solid rgba(240,237,230,.06);
+      border-bottom: 1px solid rgba(240,237,230,.06);
+      background: var(--gray-900);
+    }
+    .testi-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .q-mark { font-family: 'Instrument Serif', serif; font-size: 72px; color: var(--gray-700); line-height: 1; }
+    .t-text {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(20px, 2.8vw, 32px); line-height: 1.55;
+      color: var(--white); margin-bottom: 36px; font-style: italic;
+    }
+    .t-author { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-400); }
+    .t-dots  { display: flex; justify-content: center; gap: 8px; margin-top: 36px; }
+    .td { width: 5px; height: 5px; border-radius: 50%; background: var(--gray-600); cursor: none; transition: background .3s; }
+    .td.a { background: var(--white); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .hero { padding: 0 24px 60px; }
+      .hero-stats { gap: 28px; }
+      .about { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+      .svc-hd { padding: 0 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .svc-intro { text-align: left; }
+      .svc-grid { grid-template-columns: 1fr 1fr; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .wi.tall { grid-row: unset; }
+      .process { padding: 80px 24px; }
+      .proc-hd { grid-template-columns: 1fr; gap: 40px; }
+      .proc-steps { grid-template-columns: 1fr 1fr; }
+      .scroll-ind { display: none; }
+    }
+    @media (max-width: 600px) {
+      .hero {
+        min-height: auto;
+        padding: 136px 16px 56px;
+      }
+      .hero-rings { width: 520px; height: 520px; right: -260px; top: -120px; }
+      .hero-tag { align-items: flex-start; margin-bottom: 24px; }
+      .hero-hl { font-size: clamp(56px, 18vw, 86px); }
+      .hero-hl .l3 { padding-left: 0; }
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+      }
+      .hero-stats {
+        width: 100%;
+        justify-content: space-between;
+        gap: 14px;
+      }
+      .stat-num { font-size: 34px; }
+      .about { padding: 64px 16px; }
+      .svc-hd { padding: 0 16px; }
+      .svc-grid,
+      .work-grid,
+      .proc-steps { grid-template-columns: 1fr; }
+      .svc-item { padding: 36px 24px; }
+      .work-hd { padding: 0 16px 36px; }
+      .work-grid { margin: 0; }
+      .wi,
+      .wi.tall { aspect-ratio: 4 / 3; }
+      .process { padding: 64px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cursor elements -->
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div class="dots"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="Something Different Studios logo" style="height:36px;width:auto;">
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Something Different</span>
+      <span class="nav-logo-sub">Studios</span>
+    </div>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="site-nav">
+    <li><a href="index.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.2v-6.1H8.7V21H3.5a.5.5 0 0 1-.5-.5v-9.7Z"/></svg></span><span>Home</span></a></li>
+    <li><a href="about.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12.2a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2Zm-7.5 8.3c.8-3.9 3.6-6.1 7.5-6.1s6.7 2.2 7.5 6.1H4.5Z"/></svg></span><span>About</span></a></li>
+    <li><a href="services.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h7v7H4v-7Zm9 0h7v7h-7v-7Zm-9 9h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></svg></span><span>Services</span></a></li>
+    <li><a href="portfolio.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2 0v6.2l3.2-3.2 4.2 4.2 1.8-1.8L18 14.7V6.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5Z"/></svg></span><span>Portfolio</span></a></li>
+    <li><a href="contact.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4V5Zm2 3.2v.5l6 4.1 6-4.1v-.5H6Zm0 3v5.8h12v-5.8l-6 4.1-6-4.1Z"/></svg></span><span>Contact</span></a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg class="hero-rings" width="700" height="700" viewBox="0 0 700 700" fill="none"
+         xmlns="http://www.w3.org/2000/svg" style="animation:rotate 50s linear infinite">
+      <circle cx="350" cy="350" r="320" stroke="rgba(240,237,230,.035)" stroke-width="1"/>
+      <circle cx="350" cy="350" r="250" stroke="rgba(240,237,230,.03)"  stroke-width="1"/>
+      <circle cx="350" cy="350" r="180" stroke="rgba(240,237,230,.025)" stroke-width="1"/>
+      <circle cx="350" cy="350" r="110" stroke="rgba(240,237,230,.02)"  stroke-width="1"/>
+      <line x1="30" y1="350" x2="670" y2="350" stroke="rgba(240,237,230,.025)" stroke-width=".5"/>
+      <line x1="350" y1="30" x2="350" y2="670" stroke="rgba(240,237,230,.025)" stroke-width=".5"/>
+    </svg>
+    <style>@keyframes rotate { from { transform:rotate(0deg) } to { transform:rotate(360deg) } }</style>
+  </div>
+  <div class="hero-scan"></div>
+  <div class="hero-corner corner-tl"></div>
+  <div class="hero-corner corner-tr"></div>
+  <div class="hero-corner corner-bl"></div>
+  <div class="hero-corner corner-br"></div>
+
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <div class="hero-tag fu">Based in India &nbsp;·&nbsp; Working Worldwide</div>
+
+  <h1 class="hero-hl fu">
+    <span class="l1">Visuals That</span><br>
+    <span class="l2">Tell Different</span><br>
+    <span class="l3">Stories.</span>
+  </h1>
+
+  <div class="hero-bottom fu">
+    <div class="hero-left">
+      <div class="hero-pill">Available for Freelance</div>
+      <p class="hero-tagline">Films &nbsp;·&nbsp; Visuals &nbsp;·&nbsp; Stories</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-num">28+</span>
+        <span class="stat-lbl">Projects</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">16+</span>
+        <span class="stat-lbl">Clients</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">2+</span>
+        <span class="stat-lbl">Years</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MARQUEE
+═══════════════════════════════════════════ -->
+<div class="marq-wrap">
+  <div class="marq-track">
+    <span class="marq-item a">Graphic Design</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">VFX</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Motion Graphics</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Video Editing</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Film Production</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Something Different</span><span class="marq-item marq-dot">·</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marq-item a">Graphic Design</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">VFX</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Motion Graphics</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Video Editing</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item a">Film Production</span><span class="marq-item marq-dot">·</span>
+    <span class="marq-item">Something Different</span><span class="marq-item marq-dot">·</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT STRIP
+═══════════════════════════════════════════ -->
+<section class="about" id="about">
+  <div>
+    <div class="sec-tag">About Me</div>
+    <h2 class="about-hl fu">I create visuals<br>that feel <em>undeniably</em><br>different.</h2>
+    <p class="about-body fu">
+      I'm Lakshay Kaushik — a first-year animator and visual artist specialising in cinematic visuals, graphic design, and motion storytelling. I work with ambitious brands and individuals who refuse to blend in — crafting work that demands attention and earns it.
+    </p>
+  </div>
+  <div class="about-feats">
+    <div class="af fu">
+      <div class="af-lbl">Film Production</div>
+      <p class="af-txt">Concept to screen — we handle scripting, direction, cinematography, and post-production with cinematic precision.</p>
+    </div>
+    <div class="af fu">
+      <div class="af-lbl">Motion Graphics & VFX</div>
+      <p class="af-txt">Frame-perfect motion work that adds dimension, energy, and narrative depth to every project.</p>
+    </div>
+    <div class="af fu">
+      <div class="af-lbl">Graphic Design</div>
+      <p class="af-txt">Visual identities, editorial layouts, and campaign artwork built to be unforgettable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════ -->
+<section class="services" id="services">
+  <div class="svc-hd">
+    <h2 class="svc-title">What<br>I Do</h2>
+    <p class="svc-intro">Five specialisations, one creative who treats every project as a flagship.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-item fu">
+      <div class="svc-num">01</div>
+      <div class="svc-icon">🎬</div>
+      <div class="svc-name">Film Production</div>
+      <p class="svc-desc-txt">Full-cycle film production — from creative brief to final colour grade. Branded films, music videos, short-form docs.</p>
+      <span class="svc-arrow">↗</span>
+    </div>
+    <div class="svc-item fu">
+      <div class="svc-num">02</div>
+      <div class="svc-icon">✦</div>
+      <div class="svc-name">Motion Graphics</div>
+      <p class="svc-desc-txt">Dynamic motion work including title sequences, explainer animations, and broadcast packages.</p>
+      <span class="svc-arrow">↗</span>
+    </div>
+    <div class="svc-item fu">
+      <div class="svc-num">03</div>
+      <div class="svc-icon">⬡</div>
+      <div class="svc-name">VFX</div>
+      <p class="svc-desc-txt">Visual effects compositing, 3D integration, and photo-real retouching that push the boundary of reality.</p>
+      <span class="svc-arrow">↗</span>
+    </div>
+    <div class="svc-item fu">
+      <div class="svc-num">04</div>
+      <div class="svc-icon">◈</div>
+      <div class="svc-name">Graphic Design</div>
+      <p class="svc-desc-txt">Brand identity, campaign graphics, editorial layouts, and print collateral that speak volumes.</p>
+      <span class="svc-arrow">↗</span>
+    </div>
+    <div class="svc-item fu">
+      <div class="svc-num">05</div>
+      <div class="svc-icon">▶</div>
+      <div class="svc-name">Video Editing</div>
+      <p class="svc-desc-txt">Rhythm-driven editing for social content, commercials, and long-form projects. Every cut intentional.</p>
+      <span class="svc-arrow">↗</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WORK / PORTFOLIO PREVIEW
+═══════════════════════════════════════════ -->
+<section class="work" id="work">
+  <div class="work-hd">
+    <div class="sec-tag">Selected Work</div>
+    <h2 class="work-title fu">Recent<br>Projects</h2>
+    <p class="work-sub fu">A selection of work across film, design, and motion</p>
+  </div>
+  <div class="work-grid">
+    <!-- ▼ REPLACE: update each src with your actual portfolio image paths -->
+    <!-- Item 1 — tall (spans 2 rows) -->
+    <div class="wi tall">
+      <img src="images/marlboro.png" alt="Marlboro Red — Graphic Design">
+      <div class="wi-ov">
+        <div class="wi-info">
+          <div class="wi-cat">Graphic Design · Collage</div>
+          <div class="wi-title">Marlboro Red</div>
+        </div>
+      </div>
+    </div>
+    <!-- Item 2 -->
+    <div class="wi">
+      <img src="images/outcast.png" alt="Outcast — Music Poster">
+      <div class="wi-ov">
+        <div class="wi-info">
+          <div class="wi-cat">Graphic Design · Music</div>
+          <div class="wi-title">Outcast</div>
+        </div>
+      </div>
+    </div>
+    <!-- Item 3 -->
+    <div class="wi">
+      <img src="images/japan.png" alt="Japan Orange — Art Direction">
+      <div class="wi-ov">
+        <div class="wi-info">
+          <div class="wi-cat">Art Direction · Editorial</div>
+          <div class="wi-title">Japan Orange</div>
+        </div>
+      </div>
+    </div>
+    <!-- Item 4 -->
+    <div class="wi">
+      <img src="images/nyc.png" alt="New York City — Poster">
+      <div class="wi-ov">
+        <div class="wi-info">
+          <div class="wi-cat">Graphic Design · Poster</div>
+          <div class="wi-title">New York City</div>
+        </div>
+      </div>
+    </div>
+    <!-- Item 5 -->
+    <div class="wi">
+      <img src="images/kingofpop.png" alt="King of Pop — Michael Jackson">
+      <div class="wi-ov">
+        <div class="wi-info">
+          <div class="wi-cat">Graphic Design · Tribute</div>
+          <div class="wi-title">King of Pop</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; padding:60px 52px;">
+    <a href="portfolio.html" class="btn-g">View Full Portfolio</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROCESS
+═══════════════════════════════════════════ -->
+<section class="process" id="process">
+  <div class="proc-hd">
+    <div>
+      <div class="sec-tag">How I Work</div>
+      <h2 class="proc-title">My<br>Process</h2>
+    </div>
+    <p class="proc-intro fu">Great creative work is born from clarity, curiosity, and fearless execution. My four-stage process ensures every project delivers beyond expectations.</p>
+  </div>
+  <div class="proc-steps">
+    <div class="ps fu">
+      <div class="ps-num">01</div>
+      <div class="ps-title">Discovery</div>
+      <p class="ps-txt">I immerse in your world — understanding your goals, audience, and ambitions before a single frame is conceived.</p>
+    </div>
+    <div class="ps fu">
+      <div class="ps-num">02</div>
+      <div class="ps-title">Concepting</div>
+      <p class="ps-txt">Strategic ideation meets creative exploration. Bold directions refined until the concept is undeniably right.</p>
+    </div>
+    <div class="ps fu">
+      <div class="ps-num">03</div>
+      <div class="ps-title">Production</div>
+      <p class="ps-txt">Precision execution at every stage. Meticulous attention to craft, colour, and detail that elevates the final work.</p>
+    </div>
+    <div class="ps fu">
+      <div class="ps-num">04</div>
+      <div class="ps-title">Delivery</div>
+      <p class="ps-txt">Final assets optimised for every platform. I don't ship until it's extraordinary.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIAL
+═══════════════════════════════════════════ -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="q-mark">"</div>
+    <p class="t-text" id="tt">Working with Something Different Studios transformed how our audience perceives us. The results were beyond anything we imagined possible.</p>
+    <div class="t-author" id="ta">— Alex Chen · Creative Director, NEXUS Labs</div>
+    <div class="t-dots">
+      <div class="td a" onclick="setT(0)"></div>
+      <div class="td"   onclick="setT(1)"></div>
+      <div class="td"   onclick="setT(2)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════ -->
+<section class="cta-band" id="contact">
+  <div class="sec-tag" style="justify-content:center; margin-bottom:28px">Ready to Begin</div>
+  <h2 class="cta-band-hl fu">
+    Let's make<br><span class="hollow">something</span><br>different.
+  </h2>
+  <p class="cta-band-body fu">
+    I work with select clients worldwide.<br>
+    Tell me about your project and let's create something extraordinary.
+  </p>
+  <div class="btns fu">
+    <a href="contact.html" class="btn-p">Start a Project</a>
+    <a href="portfolio.html" class="btn-g">View Portfolio</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div>
+    <div class="f-brand">Lakshay Kaushik</div>
+    <div class="f-tag">Based in India &nbsp;·&nbsp; Available Worldwide</div>
+  </div>
+  <div class="f-links">
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="index.html#process">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="f-right">
+    <div class="f-clbl">Get in Touch</div>
+    <!-- ▼ REPLACE: update with your actual contact email -->
+    <a href="mailto:somethingdifferen07@gmail.com" class="f-email">somethingdifferen07@gmail.com</a>
+  </div>
+  <div class="f-bottom">
+    <span>© 2025 Lakshay Kaushik</span>
+    <span>Visuals · Stories · Impact</span>
+    <span>All rights reserved</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
